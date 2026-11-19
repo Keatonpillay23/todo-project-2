@@ -1,0 +1,197 @@
+/* ============================================================
+   PROJECT 2: TO-DO APP — style.css
+   Same techniques as Project 1 (variables, flexbox, grid),
+   now applied to an interactive app UI.
+   ============================================================ */
+
+:root {
+  --bg: #eef2f7;
+  --card: #ffffff;
+  --text: #1e2a38;
+  --muted: #7b8794;
+  --primary: #2E86AB;
+  --primary-dark: #1F4E79;
+  --danger: #e03131;
+  --success: #2f9e44;
+  --border: #e3e8ef;
+  --radius: 12px;
+  --shadow: 0 10px 30px rgba(30, 42, 56, 0.10);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(160deg, #eef2f7, #dbe6f1);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  color: var(--text);
+}
+
+/* ---------- CARD ---------- */
+.app {
+  width: 100%;
+  max-width: 560px;
+  background: var(--card);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 28px;
+}
+
+.app-header h1 { font-size: 1.9rem; }
+.subtitle { color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
+#count { font-weight: 700; color: var(--primary); }
+
+/* ---------- ADD FORM ---------- */
+.todo-form { display: flex; gap: 10px; margin: 22px 0 16px; }
+
+.todo-form input {
+  flex: 1;                     /* take all remaining width */
+  padding: 13px 16px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+.todo-form input:focus { outline: none; border-color: var(--primary); }
+
+.btn-add {
+  padding: 13px 22px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--primary);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn-add:hover { background: var(--primary-dark); }
+.btn-add:active { transform: scale(0.97); }
+
+/* ---------- FILTERS ---------- */
+.filters { display: flex; gap: 8px; margin-bottom: 16px; }
+
+.filter-btn {
+  padding: 7px 16px;
+  border: 1px solid var(--border);
+  background: transparent;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.filter-btn:hover { border-color: var(--primary); color: var(--primary); }
+.filter-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+/* ---------- LIST ---------- */
+.todo-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fbfcfe;
+  animation: slideIn 0.2s ease;
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* The checkbox */
+.todo-check {
+  width: 20px; height: 20px;
+  accent-color: var(--primary);   /* colours the native checkbox */
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* The task text */
+.todo-text {
+  flex: 1;
+  cursor: pointer;
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+/* Completed tasks: strikethrough + faded */
+.todo-item.completed .todo-text {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+/* Inline edit input (appears when you double-click a task) */
+.edit-input {
+  flex: 1;
+  padding: 6px 10px;
+  border: 2px solid var(--primary);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+/* Delete button — only shows on hover (subtle, modern) */
+.btn-delete {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.todo-item:hover .btn-delete { color: var(--danger); }
+.btn-delete:hover { background: #ffe3e3; }
+
+/* ---------- EMPTY STATE ---------- */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+}
+.empty-icon { font-size: 2rem; display: block; margin-bottom: 8px; }
+.empty-state.hidden { display: none; }   /* JS toggles this class */
+
+/* ---------- FOOTER ---------- */
+.app-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.btn-clear {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.btn-clear:hover { color: var(--danger); }
+
+.credit { margin-top: 18px; font-size: 0.8rem; color: var(--muted); }
+.credit a { color: var(--primary); }
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 480px) {
+  .app { padding: 20px; border-radius: 14px; }
+  .app-header h1 { font-size: 1.5rem; }
+  .btn-add { padding: 13px 16px; }
+}

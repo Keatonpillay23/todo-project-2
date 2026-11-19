@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     PROJECT 2: TO-DO APP
+     File: index.html — structure
+     See NOTES.md for the full explanation of every section.
+     ============================================================ -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A to-do app built with vanilla JavaScript and localStorage. Project 2 of 24.">
+  <title>Keaton's To-Do App | Project 02</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="app">
+    <!-- ---------- HEADER ---------- -->
+    <header class="app-header">
+      <h1>My Tasks</h1>
+      <!-- This <p> is updated by JS to show how many tasks are left -->
+      <p class="subtitle"><span id="count">0</span> task(s) left • saved in your browser</p>
+    </header>
+
+    <!-- ---------- ADD FORM ----------
+         Wrapped in a <form> so pressing Enter submits it —
+         no need to click the button. That's built-in browser behaviour. -->
+    <form id="todoForm" class="todo-form">
+      <input
+        type="text"
+        id="todoInput"
+        placeholder="What needs doing?"
+        autocomplete="off"
+        maxlength="120"
+        aria-label="New task">
+      <button type="submit" class="btn-add">Add</button>
+    </form>
+
+    <!-- ---------- FILTERS ----------
+         data-filter attributes are read by JS. One listener handles all 3. -->
+    <div class="filters" role="tablist">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="active">Active</button>
+      <button class="filter-btn" data-filter="completed">Completed</button>
+    </div>
+
+    <!-- ---------- THE LIST ----------
+         JS fills this <ul> with <li> items. It starts empty on purpose:
+         all rendering happens in JavaScript. -->
+    <ul id="todoList" class="todo-list"></ul>
+
+    <!-- ---------- EMPTY STATE ----------
+         Shown only when there's nothing to display. -->
+    <div id="emptyState" class="empty-state">
+      <span class="empty-icon">📝</span>
+      <p>Nothing here yet. Add your first task above.</p>
+    </div>
+
+    <!-- ---------- FOOTER ---------- -->
+    <footer class="app-footer">
+      <span id="itemsLeft">0 items</span>
+      <button id="clearCompleted" class="btn-clear">Clear completed</button>
+    </footer>
+  </main>
+
+  <p class="credit">
+    Project 02 of 24 • <a href="https://keatonpillay.netlify.app">Back to portfolio</a>
+  </p>
+
+  <script src="app.js"></script>
+</body>
+</html>
